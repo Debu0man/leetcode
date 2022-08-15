@@ -42,40 +42,32 @@ class Solution {
         char[] arr = s.toCharArray();
 
         for(int i = 0; i < arr.length; i++){
-            switch(arr[i]) {
-                case 'M':
-                    arr[i] = 1000;
-                    break;
-                case 'D':
-                    arr[i] = 500;
-                    break;
-                case 'C':
-                    arr[i] = 100;
-                    break;
-                case 'L':
-                    arr[i] = 50;
-                    break;
-                case 'X':
-                    arr[i] = 10;
-                    break;
-                case 'V':
-                    arr[i] = 5;
-                    break;
-                case 'I':
-                    arr[i] = 1;
-                    break;
+            if(arr[i] == 'I'){
+                numberArr[i] = 1;
+            }else if(arr[i] == 'V'){
+                numberArr[i] = 5;
+            }else if(arr[i] == 'X'){
+                numberArr[i] = 10;
+            }else if(arr[i] == 'L'){
+                numberArr[i] = 50;
+            }else if(arr[i] == 'C'){
+                numberArr[i] = 100;
+            }else if(arr[i] == 'D'){
+                numberArr[i] = 500;
+            }else if(arr[i] == 'M'){
+                numberArr[i] = 1000;
             }
         }
 
-        for(int i = numberArr.length-1; i >= 0; i--){
-            if(numberArr[i] < before){
-                sum -= numberArr[i];
+        
+        for(int i = numberArr.length-1; i >= 0; i--){ // 변환된 숫자 배열을 배열 뒷 부분 값부터 확인
+            if(numberArr[i] < before){ // 확인하면서 배열 앖의 값 보다 숫자가 더 낮을 시 
+                sum -= numberArr[i]; // 현재 배열의 앞의 값에서 현재 배열 값을 뺀 후 총합에 더함
             }else {
-                sum += numberArr[i];
+                sum += numberArr[i]; // 앞의 값보다 높거나 같을 경우는 그냥 총합에 더함
                 before = numberArr[i];
             }
         }
-
-        return sum;
+        return sum; // 총합 리턴
     }
 }
